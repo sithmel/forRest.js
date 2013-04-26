@@ -1,0 +1,27 @@
+{
+  "name": "forrest.js",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A traversal object and routing middleware for node.js",
+  "main": "traversal.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "https://github.com/sithmel/forRest.js.git",
+  "keywords": [
+    "middleware",
+    "connect",
+    "express",
+    "router"
+  ],
+  "dependencies":{
+    "occamsrazor":"git+ssh://git@github.com:sithmel/occamsrazor.js.git"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+    
+  },
+  "author": "sithmel",
+  "license": "BSD"
+}
