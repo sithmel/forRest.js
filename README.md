@@ -1,7 +1,7 @@
 forRest.js
 ==========
 
- A traversal object and routing middleware for node.js
+A traversal object and routing middleware for node.js
  
 Object traversal middleware
 ===========================
@@ -21,3 +21,29 @@ Using our previous example we can use a relation between tables to get a tree.
 Doing this it become possible using URLs fragments to indentify automatically a data endpoint.
 
 Implementing this algorithm automates the tedious work to get the correct data when you write a web application.
+
+Example
+=======
+Getting a root traversal:
+    
+    var t = new Traversal(req);
+
+Traverse to an object (returning an object):
+
+    t.traverse('id', function (err, obj){
+        console.log(obj);
+    });
+
+Get a new traversal:
+
+    var t1 = new Traversal(req, obj);
+
+and so on ...
+
+Listing children:
+
+
+    var t = new Traversal(...);
+    
+
+

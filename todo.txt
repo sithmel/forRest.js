@@ -1,5 +1,0 @@
-? - error management
-V - add parent to traverse
-X - traversal proto
-X - memory traverser
-V - relative traverser

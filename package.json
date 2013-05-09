@@ -1,13 +1,15 @@
 {
-  "name": "forrest.js",
+  "name": "forrest",
   "version": "0.0.1",
-  "private": true,
   "description": "A traversal object and routing middleware for node.js",
-  "main": "traversal.js",
+  "main": "./lib/index",
   "scripts": {
     "test": "mocha"
   },
-  "repository": "https://github.com/sithmel/forRest.js.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sithmel/forRest.js.git"
+  },
   "keywords": [
     "middleware",
     "connect",
@@ -22,6 +24,6 @@
     "should": "*"
     
   },
-  "author": "sithmel",
-  "license": "BSD"
+  "author": "Maurizio Lupo (@sithmel)",
+  "license": "MIT"
 }
