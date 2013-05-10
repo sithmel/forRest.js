@@ -17,7 +17,6 @@
     "router"
   ],
   "dependencies":{
-    "occamsrazor":"git+ssh://git@github.com:sithmel/occamsrazor.js.git"
   },
   "devDependencies": {
     "mocha": "*",

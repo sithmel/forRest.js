@@ -97,6 +97,8 @@ describe('buildTree', function(){
         });
     });
 
+    // test traverse method
+
 });
 
 
