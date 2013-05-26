@@ -16,6 +16,7 @@ describe('Simple obj Travering', function(){
       rootobj = {a:{b:{c:3}}}
       Traversal = getMemoryTraversal(rootobj)
       t = new Traversal();
+
       done();
     });
 
