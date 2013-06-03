@@ -5,7 +5,7 @@
 // run with "mocha"
 
 var should = require('should'),
-    getMemoryTraversal = require('../lib/getmemorytraversal'),
+    MemoryTraversal = require('../lib/memorytraversal'),
     traversal_util = require('../lib/traversal_util');
 
 describe('buildTree', function(){
@@ -13,7 +13,7 @@ describe('buildTree', function(){
     var getTraverser;
 
     before(function(done){
-      var Traversal = getMemoryTraversal({a:{b:{c:3}}}),
+      var Traversal = MemoryTraversal,
           traversal = traversal_util(Traversal, null);
     
       getTraverser = traversal.buildTree;
@@ -27,7 +27,7 @@ describe('buildTree', function(){
     });
 
     it('traversing', function(){
-        getTraverser('/a', function (err, context){
+        getTraverser('/a', {a:{b:{c:3}}}, function (err, context){
             context.get(function (err, obj){
                 obj.should.have.property('b');
             });
@@ -35,7 +35,7 @@ describe('buildTree', function(){
     });
 
     it('traversing 2', function(){
-        getTraverser('/a/b', function (err, context){
+        getTraverser('/a/b', {a:{b:{c:3}}}, function (err, context){
             context.get(function (err, obj){
                 obj.should.have.property('c');
             });
@@ -43,7 +43,7 @@ describe('buildTree', function(){
     });
 
     it('traversing 3', function(){
-        getTraverser('/a/b/c', function (err, context){
+        getTraverser('/a/b/c', {a:{b:{c:3}}}, function (err, context){
             context.get(function (err, obj){
                 obj.should.be.equal(3);
             });
@@ -51,7 +51,7 @@ describe('buildTree', function(){
     });
 
     it('traversing 4', function(){
-        getTraverser('/a/b/c/d', function (err, context){
+        getTraverser('/a/b/c/d', {a:{b:{c:3}}}, function (err, context){
             err.url.should.be.equal('d');
             context.get(function (err, obj){
                 obj.should.be.equal(3);
@@ -60,7 +60,7 @@ describe('buildTree', function(){
     });
 
     it('traversing 5', function(){
-        getTraverser('/a/b/c/d/e', function (err, context){
+        getTraverser('/a/b/c/d/e', {a:{b:{c:3}}},function (err, context){
             err.url.should.be.equal('d/e');
             context.get(function (err, obj){
                 obj.should.be.equal(3);
@@ -70,13 +70,13 @@ describe('buildTree', function(){
 
 
     it('traversal has not parent', function(){
-        getTraverser('', function (err, context){
+        getTraverser('', {a:{b:{c:3}}}, function (err, context){
             should.not.exist(context.parent); 
         });
     });
 
     it('traversal has parent', function(){
-        getTraverser('/a', function (err, context){
+        getTraverser('/a', {a:{b:{c:3}}}, function (err, context){
             should.exist(context.parent); 
             context.parent.get(function (err, obj){
                 obj.should.have.property('a');
@@ -85,7 +85,7 @@ describe('buildTree', function(){
     });
 
     it('traversal2 has parent', function(){
-        getTraverser('/a/b', function (err, context){
+        getTraverser('/a/b', {a:{b:{c:3}}}, function (err, context){
             should.exist(context.parent); 
             context.parent.get(function (err, obj){
                 obj.should.have.property('b');
@@ -107,12 +107,12 @@ describe('traverse', function(){
     before(function(done){
       var traversal;
 
-      Traversal = getMemoryTraversal({a:{b:{c:3}}});
+      Traversal = MemoryTraversal;
       traversal = traversal_util(Traversal, null);
 
       traverse = traversal.traverse;
 
-      traversal.buildTree('/a', function (err, context){
+      traversal.buildTree('/a', {a:{b:{c:3}}}, function (err, context){
         t = context;
         done();
       });

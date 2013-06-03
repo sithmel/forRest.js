@@ -5,10 +5,9 @@
 // run with "mocha"
 
 var should = require('should'),
-    getMemoryTraversal = require('../lib/getmemorytraversal'),
-    Traversal = getMemoryTraversal({a:{b:{c:3}}}),
+    Traversal = require('../lib/memorytraversal'),
     traverseMiddleware = require('../lib/middleware'),
-    middle = traverseMiddleware(Traversal);
+    middle = traverseMiddleware(Traversal, {a:{b:{c:3}}});
 
 
 describe('Traverse middleware', function(){

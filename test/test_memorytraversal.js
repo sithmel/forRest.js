@@ -5,18 +5,16 @@
 // run with "mocha"
 
 var should = require('should'),
-    getMemoryTraversal = require('../lib/getmemorytraversal');
+    MemoryTraversal = require('../lib/memorytraversal');
 
 
 
-describe('Simple obj Travering', function(){
-    var t, Traversal, rootobj;
+describe('Simple obj Traversing', function(){
+    var t, rootobj;
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
-
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
@@ -39,7 +37,7 @@ describe('Simple obj Travering', function(){
     it('it traverse 2', function(){
       
       t.traverse('a', function (err, obj){
-          var t2 = new Traversal({}, obj);
+          var t2 = new MemoryTraversal({}, obj);
           t2.traverse('b', function (err, obj2){
               should.exist(obj2);
           });
@@ -51,12 +49,11 @@ describe('Simple obj Travering', function(){
 
 describe('Getting the original object', function(){
 
-    var t, Traversal, rootobj;
+    var t, rootobj;
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
@@ -69,7 +66,7 @@ describe('Getting the original object', function(){
     it('After traversing', function(){
       
       t.traverse('a', function (err, obj){
-          var t2 = new Traversal({}, obj);
+          var t2 = new MemoryTraversal({}, obj);
           
           
           t2.get(function (err, obj){
@@ -84,12 +81,11 @@ describe('Getting the original object', function(){
 
 describe('Append an object', function(){
 
-    var t, Traversal, rootobj;
+    var t, rootobj;
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
@@ -110,8 +106,7 @@ describe('Update an object', function(){
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
@@ -137,8 +132,7 @@ describe('Delete object', function(){
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
@@ -154,17 +148,15 @@ describe('Delete object', function(){
 
 describe('List', function(){
 
-    var t, Traversal, rootobj;
+    var t, rootobj;
 
     before(function(done){
       rootobj = {a:{b:{c:3}}}
-      Traversal = getMemoryTraversal(rootobj)
-      t = new Traversal();
+      t = new MemoryTraversal(null, rootobj);
       done();
     });
 
     it('List works', function(){
-      var t = new Traversal();
       t.list(function (err, lst){
           lst.should.be.eql(["a"])
       });
