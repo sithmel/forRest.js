@@ -8,6 +8,22 @@ Object traversal middleware
 
 This middleware is used to get the "context" from a fragment of HTTP URL.
 
+This is not the model you have been looking for
+===============================================
+I think that the word "model" is a bit misleading when you talk about a client server architecture.
+In the client you should use a REST architecture to exchange data. There are too many advantages doing this:
+
+    - fits well with the transport protocol (HTTP)
+    - it is stateless and cacheable so it can scale easily
+    - it is an uniform API (only resources and verbs) and you this leads to code reuse
+
+Let's talk about backend: we have models here too. But these models have relations between them, are structured in different ways, are stored in different DB and uses different APIS.
+For all these reason I think We (developers) should start to talk about 2 differents kinds of models: frontend model and backend model.
+In my opinion every web application should have (in its backend) an API that uses urls to get a frontend model and then transform in an appropriate representation.
+
+This is the fundamental premise for using the same MVC framework in both client and server.
+
+
 Mapping data in a tree structure
 ================================
 HTTP maps resources in a tree structure.
@@ -35,7 +51,7 @@ A traversal object is a wrapper around an object and it offers the API needed to
 
 First of all get the root traversal:
     
-    var t = new Traversal();
+    var t = new Traversal(); //TODO to fix using root
     
 If you don't pass arguments you should obtain the root object. This object is the root of the tree.
 You can get the wrapped object with the "get" method.
@@ -173,4 +189,11 @@ Extending a traversal
 =====================
 If you want to 
 Using occamsrazor.js to extend a traversal ....
+
+
+
+TODO:
+
+destroy method: move on parent
+method obj: sync and simple version (remove?) traversal.obj
 
