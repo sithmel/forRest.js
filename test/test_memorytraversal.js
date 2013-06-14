@@ -8,7 +8,6 @@ var should = require('should'),
     MemoryTraversal = require('../lib/memorytraversal');
 
 
-
 describe('Simple obj Traversing', function(){
     var t, rootobj;
 
@@ -58,20 +57,18 @@ describe('Getting the original object', function(){
     });
 
     it('Before traversing', function(){
-      t.get(function (err, obj){
-          obj.should.be.equal(rootobj);
-      });
+      var obj = t.get();
+      obj.should.be.equal(rootobj);
     });
 
     it('After traversing', function(){
       
       t.traverse('a', function (err, obj){
-          var t2 = new MemoryTraversal({}, obj);
-          
-          
-          t2.get(function (err, obj){
+          var t2 = new MemoryTraversal({}, obj),
+              obj = t2.get();
+
           obj.should.be.equal(rootobj.a);
-          });
+
       });
     });
 
@@ -137,16 +134,16 @@ describe('Delete object', function(){
     });
 
     it('Destroy', function(){
-      t.destroy(function (err){
-          t.get(function (err, obj){
-              err.should.be.equal('undefined');
+      t.destroy('a', function (err){
+          t.traverse('a', function (err, obj){
+              err.should.be.equal('not found');
           });
       });
       
     });
 });
 
-describe('List', function(){
+describe('Query', function(){
 
     var t, rootobj;
 
@@ -157,8 +154,9 @@ describe('List', function(){
     });
 
     it('List works', function(){
-      t.list(function (err, lst){
-          lst.should.be.eql(["a"])
+      t.query({}, function (err, lst){
+          err.should.be.equal('cannot list');
+//          lst.should.be.eql(["a"])
       });
       
     });
