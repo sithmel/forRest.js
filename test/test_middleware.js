@@ -6,7 +6,7 @@
 
 var should = require('should'),
     Traversal = require('../lib/memorytraversal'),
-    traverseMiddleware = require('../lib/middleware'),
+    traverseMiddleware = require('../lib/traversal_middleware'),
     middle = traverseMiddleware(Traversal, {a:{b:{c:3}}});
 
 
