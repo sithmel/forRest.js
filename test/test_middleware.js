@@ -49,7 +49,7 @@ describe('Traverse middleware', function(){
     it('traversing 4', function(){
         var req = {url:'/a/b/c/d'};
         middle(req, null, function (){
-            req.url.should.be.equal('d');
+            req.url.should.be.equal('/d');
             req.context.get(function (err, obj){
                 obj.should.be.equal(3);
             });
@@ -59,7 +59,7 @@ describe('Traverse middleware', function(){
     it('traversing 5', function(){
         var req = {url:'/a/b/c/d/e'};
         middle(req, null, function (){
-            req.url.should.be.equal('d/e')
+            req.url.should.be.equal('/d/e')
             req.context.get(function (err, obj){
                 obj.should.be.equal(3);
             });
