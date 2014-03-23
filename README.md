@@ -15,10 +15,10 @@ In the client you should use a REST architecture to exchange data. There are too
 
     - fits well with the transport protocol (HTTP)
     - it is stateless and cacheable so it can scale easily
-    - it is an uniform API (only resources and verbs) and you this leads to code reuse
+    - it is an uniform API (only resources and verbs) and this leads to code reuse
 
 Let's talk about backend: we have models here too. But these models have relations between them, are structured in different ways, are stored in different DB and uses different APIS.
-For all these reason I think We (developers) should start to talk about 2 differents kinds of models: frontend model and backend model.
+For all these reason I think We (developers) should start to talk about 2 differents kinds of models: frontend models and backend models.
 In my opinion every web application should have (in its backend) an API that uses urls to get a frontend model and then transform in an appropriate representation.
 
 This is the fundamental premise for using the same MVC framework in both client and server.
